@@ -42,7 +42,7 @@ mod_microdatasus_ui <- function(id){
                       # 1. PAINEL DATASUS
                       conditionalPanel(
                         condition = sprintf("input['%s'] == 'DATASUS'", ns("fonte_dados")),
-                        selectInput(ns("sistema"), "Sistema:", choices = c("SIM-DO", "SINASC", "SIH-RD"), width = "100%"),
+                        selectInput(ns("sistema"), "Sistema:", choices = c("SIH-RD", "SIH-RJ", "SIH-SP", "SIH-ER", "SIM-DO", "SIM-DOFET", "SIM-DOEXT", "SIM-DOINF", "SIM-DOMAT", "SINASC", "CNES-LT", "CNES-ST", "CNES-DC", "CNES-EQ", "CNES-SR", "CNES-HB", "CNES-PF", "CNES-EP", "CNES-RC", "CNES-IN", "CNES-EE", "CNES-EF", "CNES-GM", "SIA-AB", "SIA-ABO", "SIA-ACF", "SIA-AD", "SIA-AN", "SIA-AM", "SIA-AQ", "SIA-AR", "SIA-ATD", "SIA-PA", "SIA-PS", "SIA-SAD", "SINAN-DENGUE", "SINAN-CHIKUNGUNYA", "SINAN-ZIKA", "SINAN-MALARIA", "SINAN-CHAGAS", "SINAN-LEISHMANIOSE-VISCERAL", "SINAN-LEISHMANIOSE-TEGUMENTAR", "SINAN-LEPTOSPIROSE"), width = "100%"),
                         selectizeInput(ns("estado"), "Estado (UF):", choices = c("Todos", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"), selected = "MG", multiple = TRUE, options = list(plugins = list('remove_button')), width = "100%"),
                         sliderInput(ns("ano"), "Período (Anos):", min = 2010, max = as.numeric(format(Sys.Date(), "%Y")), value = c(2020, 2021), sep = "", step = 1, width = "100%")
                       ),
