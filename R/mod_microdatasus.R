@@ -301,9 +301,15 @@ mod_microdatasus_server <- function(id){
     
     output$tabela_preview <- DT::renderDT({
       req(memoria$ativa)
-      req(!is.null(memoria$bases[[memoria$ativa]]))
+      df_completo <- memoria$bases[[memoria$ativa]]
+      req(!is.null(df_completo))
       
-      df_preview <- head(memoria$bases[[memoria$ativa]], 1000)
+      # Captura dimensões reais da base completa
+      total_linhas <- nrow(df_completo)
+      total_colunas <- ncol(df_completo)
+      
+      # Prepara o preview de até 1000 linhas para exibição fluida
+      df_preview <- head(df_completo, 1000)
       
       if(inherits(df_preview, "sf")) {
         df_preview <- sf::st_drop_geometry(df_preview)
@@ -315,6 +321,14 @@ mod_microdatasus_server <- function(id){
         paste0("<span style='color:", cor, "; font-weight:bold;'>", nome, "<br><small style='color:#7f8c8d; font-weight:normal;'>", tipos[[nome]], "</small></span>")
       })
       names(df_preview) <- nomes_html
+      
+      # Legenda dinâmica informando o total real de registros e colunas
+      texto_legenda <- paste0(
+        "<b>Base Ativa: ", memoria$ativa, "</b> | ",
+        "<span style='color: #2980b9;'>Total: ", format(total_linhas, big.mark = ".", decimal.mark = ","), " linhas</span> e ",
+        "<span style='color: #27ae60;'>", total_colunas, " variáveis</span> ",
+        "<small style='color: #7f8c8d;'>(Exibindo preview de até 1.000 linhas)</small>"
+      )
       
       DT::datatable(
         df_preview, 
@@ -328,7 +342,7 @@ mod_microdatasus_server <- function(id){
           bInfo = FALSE
         ), 
         class = "display nowrap compact", 
-        caption = HTML(paste0("<b>Base Ativa: ", memoria$ativa, "</b> (Preview de 1.000 linhas)"))
+        caption = HTML(texto_legenda)
       )
     })
     
