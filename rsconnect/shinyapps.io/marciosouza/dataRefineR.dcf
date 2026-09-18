@@ -1,0 +1,12 @@
+name: dataRefineR
+title: dataRefineR
+username: marciosouza
+account: marciosouza
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17948272
+bundleId: 12572957
+url: https://marciosouza.shinyapps.io/dataRefineR/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

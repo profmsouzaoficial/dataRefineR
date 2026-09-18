@@ -21,4 +21,8 @@ Você pode instalar a versão de desenvolvimento diretamente do GitHub utilizand
 if (!require("devtools")) install.packages("devtools")
 
 # Instalar o dataRefineR direto do GitHub do professor
+<<<<<<< HEAD
 devtools::install_github("profmsouzaoficial/dataRefineR")
+=======
+devtools::install_github("profmsouzaoficial/dataRefineR")
+>>>>>>> 2155ea5 (Atualizando arquivos do dataRefineR)
