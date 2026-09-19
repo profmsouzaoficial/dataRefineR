@@ -1,7 +1,7 @@
 #' Iniciar o dataRefineR
 #' @export
 dataRefineR <- function(...) {
-  suppressPackageStartupMessages(
+  suppressMessages(
     suppressWarnings({
       run_app(...)
     })
